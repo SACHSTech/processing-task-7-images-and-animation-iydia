@@ -1,36 +1,50 @@
 import processing.core.PApplet;
 
 public class Sketch extends PApplet {
-	
-	
-  /**
-   * Called once at the beginning of execution, put your size all in this method
-   */
-  public void settings() {
-	// put your size call here
-    size(400, 400);
-  }
-
-  /** 
-   * Called once at the beginning of execution.  Add initial set up
-   * values here i.e background, stroke, fill etc.
-   */
-  public void setup() {
-    background(210, 255, 173);
-  }
 
   /**
-   * Called repeatedly, anything drawn to the screen goes here
+   * Assignment: 5.9 Processing Task 7 - Images and Animation
+   * Author: Lydia He
+   * Date: Tue Apr 19, 2022
+   * Description: A program that implements the 
+   * following: an image background, an animated image, 
+   * an animated shape, basic edge detection. The image 
+   * moves in a non-linear path. 
    */
-  public void draw() {
-	  
-	// sample code, delete this stuff
-    stroke(128);
-    line(150, 25, 270, 350);  
 
-    stroke(255);
-    line(50, 125, 70, 50);  
-  }
+  // state variables
+  PImage background;
+  float x = 0;
+  float y = 0;
+  float xSpeed = 8;
+  float ySpeed = 2;
   
-  // define other methods down here.
+  public void setup() {
+    int width = 400;
+    int height = 400;
+    size(width, height);
+
+    // image background
+    background = loadImage("background1.jpeg");
+  }
+
+  public void draw() {
+    // draw image
+    image(background, 0, 0);
+
+    // animate basic edge detection
+    ellipse(x, y, 50, 50);
+
+    x += xSpeed;
+    y += ySpeed;
+  
+    if (x < 0 || x > width) {
+      xSpeed *= -1;
+    }
+  
+    if (y < 0  || y > height) {
+      ySpeed *= -1;
+    }
+      
+  }
 }
